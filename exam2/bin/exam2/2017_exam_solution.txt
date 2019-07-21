@@ -1,0 +1,82 @@
+1.
+	a. (none) 		|A B C D
+
+	b. (none)		NoSuchElementException
+
+	c. S 			A S |B C D
+
+	d. A			X |B C D
+	   A
+
+	e. 5			IllegalStateException
+
+	f. (none)		IllegalStateException
+
+2.
+
+	public static <T> boolean isSorted(List<T> list,
+	Comparator< ? super T > comp) // <- ANSWER
+	{
+		if ( list == null )
+			throw new NullPointerException(); // <- ANSWER
+		if ( list.size() <= 1 ) // or <= 0 // <- ANSWER
+			return true;
+		ListIterator<T> iter = list.listIterator();
+		T prev = iter.next();
+		while ( iter.hasNext() )
+		{
+			T curr = iter.next();
+			if ( comp.compare(prev, curr) >= 0 ) // <- ANSWER
+				return false;
+			prev = curr;	// <- ANSWER
+		}
+		return true; // <- ANSWER
+	}
+
+3.
+
+	a.	O(nm)
+
+	b.	O(1)
+
+	c.	O(n)
+
+	d.	O(1)
+
+4.
+	size() 
+		return size;
+
+	isEmpty()
+		return size == 0;
+
+	unlink(Node toRemove)
+		toRemove.next.prev = toRemove.prev;
+
+	link(Node current, Node toAdd)
+		toAdd.next.prev = toAdd;
+		current.next = toAdd;
+
+	addAtHead(E element)
+		link(head, toAdd);
+
+	removeAtHead()
+		head.next == tail
+		unlink(head.next);
+		size--;
+
+	head()
+		head.next == tail
+		return head.next.data;
+
+	addAtTail(E element)
+		link(tail.prev, toAdd);
+
+	removeAtTail()
+		tail.prev == head
+		unlink(tail.prev);
+		size--;
+
+	tail()
+		tail.prev == head
+		return tail.prev.data;

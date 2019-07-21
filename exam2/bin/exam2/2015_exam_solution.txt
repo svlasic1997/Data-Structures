@@ -1,0 +1,132 @@
+1.
+	a.	(none)		|A B C D E
+
+	b.	0			A | B C D E
+
+	c.	A 			NoSuchElementException
+		B
+		C
+		D
+		E
+
+	d.	(none)		IllegalStateException
+
+	e.			(need only show aList)
+
+				aList: A B C D E |
+				bList: (empty)
+
+				After the 1st while loop:
+				aList: |
+				bList: E D C B A
+
+				bList: | E D C B A
+					
+				After the 2nd while loop:
+				aList: E D C B A
+				bList: E D C B A |
+				
+				
+	f.
+				| A B C D E |
+				
+				iteration 1:
+				A | B C D E | (s = A)
+				A | B C D | E (t = E)
+				E | B C D | A
+				
+				iteration 2:
+				E B | C D | A (s = B)
+				E B | C | D A (t = D)
+				E D | C | B A
+				E D C || B A
+				E D || B A
+
+2.
+	a.	O(n)
+		O(1)
+
+	b.	O(n)
+
+3.
+	a.	2 a b ^ ^ c * d e + 2 * f g h - ^ + - 5 i j + / -
+	b.	a * b / 2 ^ c ^ d - 3 * ((e - f) * (g - h) + 5)
+
+4.
+	CDLinkedList <E extends Comparable<? super E>>
+
+	unlink(Node node)
+		node.previous.next = node.next;
+		node.next.previous = node.previous;
+
+	link(Node cur, Node newNode)
+		newNode.next = cur.next;
+		cur.next.previous = newNode;
+		newNode.previous = cur;
+		cur.next = newNode;
+
+	add(E val)
+		Node node = head.next;
+		while (node != head)
+		{
+		// insert the condition in the if statement below (2 pts)
+		if (node.data.compareTo(val) == 0)
+			return false;
+			// insert one line of code below (2 pts)
+			node = node.next;
+		}
+		// insert the statements below (4 pts)
+		Node newNode = new Node();
+		newNode.data = val;
+		link(head, newNode);
+		size++;
+
+		return true;
+
+	remove(E val)
+		Node cur = head.next;
+		// insert condition in the while statement below (2 pts)
+		while (cur != head && cur.data.compareTo(val) != 0)
+			cur = cur.next;
+		// insert condition in the if statement below (2 pts)
+		if (cur == head)
+			return false;
+		else
+		{
+			// insert code below (2 pts)
+			unlink(cur);
+			size--;
+
+			return true;
+		}
+
+	rearrange(E val)
+		while(cur != head)
+		{
+			// insert condition in the if statement below (2 pts)
+			if (cur.data.compareTo(val) <= 0)
+				// insert a line of code below (2 pts)
+				stk1.push(cur.data);
+			else
+				// insert a line of code below (2 pts)
+				stk2.push(cur.data);
+			// insert code below (2 pts)
+			unlink(cur);
+			cur = cur.next;
+		}
+		// pop the values out of the two stacks to reconstruct the
+		// linked list.
+		while (!stk1.empty())
+		{
+			// insert code below (3 pts)
+			Node node = new Node();
+			node.data = stk1.pop();
+			link(head.previous, node);
+		}
+		while (!stk2.empty())
+		{
+			// insert code below (3 pts)
+			Node node = new Node();
+			node.data = stk2.pop();
+			link(head.previous, node);
+		}

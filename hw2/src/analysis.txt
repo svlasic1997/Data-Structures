@@ -1,0 +1,9 @@
+The time complexities for the sorters that we utilized were O(n^2) for insertion sort, 
+O(nlogn) for merge sort, and O(nlogn) for the quick sort as well.  This means that the
+ longer the list is, the better that merge sort and quick sort will function while 
+ insertion sort will become less viable.  For n = 10, the sorting algorithms were basically
+ identical but as I increased n to 100 and 1000, insertion sort took much longer.  As the 
+ n values got longer, merge sort was also outperformed by quick sort.  So overall, from the
+ project I realized that the longer a list is, the better it is to use a sorting algorithm
+ with time complexity of O(nlogn) such as merge sort and quick sort and how slow a sorting
+ algorithm with time complexity of O(n^2) is.  
