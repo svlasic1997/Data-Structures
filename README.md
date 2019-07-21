@@ -1,2 +1,3 @@
 # Data-Structures
-Data Structures Projects 
+
+Projects and assignments from my Data Structures class
